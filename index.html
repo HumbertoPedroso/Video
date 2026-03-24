@@ -1,14 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vídeo</title>
+    <title>Atividade Vídeo</title>
 </head>
 
 <body>
-    <video  poster = images.jpg controls src="https://www.w3schools.com/html/mov_bbb.mp4" width=1300px></video>
-</body>
 
-</html> 
+    <h2>Vídeo</h2>
+
+    <video id="video" controls width="500" poster="bob-esponja-o0ufi5usnwbyvhxb.jpg">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+
+        <track src="legenda.vtt" kind="subtitles" srclang="pt" label="Português">
+    </video>
+
+    <br><br>
+
+    <button onclick="mostrarInfo()">Mostrar informações</button>
+    <button onclick="mudarTamanho()">Mudar tamanho</button>
+    <button onclick="trocarPoster()">Trocar pôster</button>
+
+    <script>
+
+        var video = document.getElementById("video");
+
+        console.log("Largura do vídeo: " + video.videoWidth);
+        console.log("Altura do vídeo: " + video.videoHeight);
+        console.log("Pode rodar mp4? " + video.canPlayType("video/mp4"));
+
+        function mudarTamanho() {
+            video.width = 300;
+            video.height = 200;
+        }
+
+        function mostrarInfo() {
+            alert(
+                "Src: " + video.currentSrc +
+                "\nControls: " + video.controls +
+                "\nAutoplay: " + video.autoplay +
+                "\nLoop: " + video.loop +
+                "\nPoster: " + video.poster +
+                "\nID: " + video.id +
+                "\nWidth: " + video.width +
+                "\nHeight: " + video.height
+            );
+        }
+
+        function trocarPoster() {
+            if (video.poster.includes("poster1")) {
+                video.poster = "bob-esponja-o0ufi5usnwbyvhxb.jpg";
+            } else {
+                video.poster = "images.jpg";
+            }
+        }
+
+        video.onpause = function() {
+            alert("Você pausou o vídeo");
+        };
+
+        video.onended = function() {
+            alert("O vídeo terminou");
+        };
+
+    </script>
+
+</body>
+</html>
